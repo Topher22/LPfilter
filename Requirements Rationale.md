@@ -1,6 +1,6 @@
 # Requirements Rationale
 
-> This document explains the origin, intent, and engineering reasoning behind each requirement defined for the VHDL FIR Low-Pass Filter project. It is a supplementary document to the main [README]Readme.md .
+> This document explains the origin, intent, and engineering reasoning behind each requirement defined for the VHDL FIR Low-Pass Filter project. It is a supplementary document to the main [README](https://github.com/Topher22/LPfilter/blob/919d8c0930031b023a6cdb00a8932207f02366fa/Readme.md) .
 
 ---
 
