@@ -31,7 +31,7 @@ Wn = fc/(fs/2); % Normalized cutoff frequency
 h = fir1(N_fil-1, Wn, 'low', hamming(N_fil));
 
 fprintf('=== Filter Coefficients (floating point) ===\n');
-for i = 1:N_taps
+for i = 1:N_fil
     fprintf('  h(%d) = %.6f\n', i, h(i));
 end
 
