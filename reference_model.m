@@ -45,14 +45,14 @@ SCALE    = 2^15;           % Q1.15 scale factor
 h_fixed  = round(h * SCALE);
 
 fprintf('\n=== Filter Coefficients (Q1.15 fixed-point for VHDL) ===\n');
-for i = 1:N_taps
+for i = 1:N_fil
     fprintf('  h(%d) = %d\n', i, h_fixed(i));
 end
 
 fprintf('\n--- Copy these into your VHDL constant array ---\n');
 fprintf('constant COEFFS : coeff_array := (\n');
-for i = 1:N_taps
-    if i < N_taps
+for i = 1:N_fil
+    if i < N_fil
         fprintf('    %d => %d,\n', i-1, h_fixed(i));
     else
         fprintf('    %d => %d\n', i-1, h_fixed(i));
