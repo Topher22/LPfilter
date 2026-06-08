@@ -59,3 +59,20 @@ for i = 1:N_fil
     end
 end
 fprintf(');\n');
+
+
+%% ------------------------------------------------------------------------
+%  SECTION 3 — Frequency Response Verification (REQ-01, REQ-02)
+% ------------------------------------------------------------------------
+
+% Check REQ-01: attenuation >= 20 dB at 2000 Hz (well into stopband)
+
+[H, f] = freqz(h, 1, 4096, fs);
+H_dB   = 20 * log10(abs(H));
+
+[~, idx_2k] = min(abs(f - 2000));
+atten_2k = H_dB(idx_2k);
+req01_pass = atten_2k <= -20;
+fprintf('\n=== REQ-01 Check (attenuation >= 20 dB above 1 kHz) ===\n');
+fprintf('  Attenuation at 2000 Hz: %.2f dB\n', atten_2k);
+fprintf('  REQ-01: %s\n', pass_fail(req01_pass));
