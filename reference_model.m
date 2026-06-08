@@ -84,6 +84,20 @@ fprintf('\n=== REQ-02 Check (attenuation < 3 dB below 500 Hz) ===\n');
 fprintf('  Attenuation at 200 Hz: %.2f dB\n', atten_200);
 fprintf('  REQ-02: %s\n', pass_fail(req02_pass));
 
+% Plot frequency response
+figure('Name', 'Frequency Response — REQ-01 & REQ-02 Verification');
+plot(f, H_dB, 'b', 'LineWidth', 1.5); hold on;
+yline(-3,  '--r', '-3 dB (REQ-02 limit)',  'LabelHorizontalAlignment', 'left');
+yline(-20, '--m', '-20 dB (REQ-01 limit)', 'LabelHorizontalAlignment', 'left');
+xline(500,  ':k', '500 Hz passband edge');
+xline(1000, ':k', '1 kHz stopband edge');
+xlabel('Frequency (Hz)'); ylabel('Magnitude (dB)');
+title('FIR Filter Frequency Response');
+xlim([0 fs/2]); ylim([-80 5]);
+grid on; legend('Filter response');
+saveas(gcf, 'docs/waveforms/frequency_response.png');
+
+
 
 
 
