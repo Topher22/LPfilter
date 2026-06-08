@@ -25,3 +25,10 @@ jobs:
           fi
           cd "$GITHUB_WORKSPACE"
           "$MATLAB_BIN" -batch "run('reference_model.m');"
+
+      - name: Upload MATLAB plot artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frequency-response
+          path: docs/waveforms/frequency_response.png
