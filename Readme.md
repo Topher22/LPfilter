@@ -1,5 +1,7 @@
 # VHDL FIR Low-Pass Filter — Digital Design & Verification
 
+[![MATLAB CI](https://github.com/Topher22/LPfilter/actions/workflows/matlab-ci.yml/badge.svg)](https://github.com/Topher22/LPfilter/actions/workflows/matlab-ci.yml)
+
 > A hardware digital filter implemented in VHDL, tested and verified through structured testbenches and validated against a MATLAB reference model — following principles of DO-254 hardware design assurance.
 > This project applies a simplified subset of DO-254 practices for educational purposes. Full compliance would require formal DAL assignment, bidirectional traceability, verification independence, and configuration management — aspects acknowledged but out of scope here.
 > Assuming this filter were used in a non-essential display system, it would likely be classified as DAL D. At DAL A (flight-critical), all five lifecycle data items would be mandatory.

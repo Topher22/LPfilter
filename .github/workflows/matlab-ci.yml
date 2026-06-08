@@ -9,7 +9,7 @@ on:
 
 jobs:
   matlab-test:
-    name: Run MATLAB reference model
+    name: MATLAB CI
     runs-on: [self-hosted, linux]
     env:
       MATLAB_BIN: /home/anwar/MATLAB/R2026a/bin/matlab
