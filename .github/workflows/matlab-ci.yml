@@ -1,0 +1,27 @@
+name: MATLAB CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+jobs:
+  matlab-test:
+    name: Run MATLAB reference model
+    runs-on: [self-hosted, linux]
+    env:
+      MATLAB_BIN: /home/anwar/MATLAB/R2026a/bin/matlab
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run reference_model.m
+        run: |
+          if [ ! -x "$MATLAB_BIN" ]; then
+            echo "MATLAB executable not found at $MATLAB_BIN"
+            exit 1
+          fi
+          cd "$GITHUB_WORKSPACE"
+          "$MATLAB_BIN" -batch "run('reference_model.m');"
