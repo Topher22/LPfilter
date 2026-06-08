@@ -23,7 +23,7 @@ clear; clc; close all;
 % Design a 5-tap FIR low-pass filter with a cutoff frequency of 0.25
 fs = 8000; % Sampling frequency (Hz)
 fc = 1000; % Cutoff frequency (Hz)
-N_fil = 5 %Number of filter taps
+N_fil = 5; %Number of filter taps
 Wn = fc/(fs/2); % Normalized cutoff frequency
 
 % Generate FIR filter coefficients using the Hamming window
@@ -69,10 +69,29 @@ fprintf(');\n');
 
 [H, f] = freqz(h, 1, 4096, fs);
 H_dB   = 20 * log10(abs(H));
-
 [~, idx_2k] = min(abs(f - 2000));
 atten_2k = H_dB(idx_2k);
 req01_pass = atten_2k <= -20;
 fprintf('\n=== REQ-01 Check (attenuation >= 20 dB above 1 kHz) ===\n');
 fprintf('  Attenuation at 2000 Hz: %.2f dB\n', atten_2k);
 fprintf('  REQ-01: %s\n', pass_fail(req01_pass));
+
+% Check REQ-02: attenuation < 3 dB at 200 Hz (well inside passband)
+[~, idx_200] = min(abs(f - 200));
+atten_200 = H_dB(idx_200);
+req02_pass = atten_200 >= -3;
+fprintf('\n=== REQ-02 Check (attenuation < 3 dB below 500 Hz) ===\n');
+fprintf('  Attenuation at 200 Hz: %.2f dB\n', atten_200);
+fprintf('  REQ-02: %s\n', pass_fail(req02_pass));
+
+
+
+
+
+%% -------------------------------------------------------------------------
+%  LOCAL HELPER FUNCTIONS
+% -------------------------------------------------------------------------
+function s = pass_fail(condition)
+if condition, s = 'PASS'; else, s = 'FAIL'; end
+end
+
