@@ -85,7 +85,11 @@ fprintf('  Attenuation at 200 Hz: %.2f dB\n', atten_200);
 fprintf('  REQ-02: %s\n', pass_fail(req02_pass));
 
 % Plot frequency response
-figure('Name', 'Frequency Response — REQ-01 & REQ-02 Verification');
+outputDir = fullfile('docs', 'waveforms');
+if ~exist(outputDir, 'dir')
+    mkdir(outputDir);
+end
+figure('Name', 'Frequency Response — REQ-01 & REQ-02 Verification', 'Visible', 'off');
 plot(f, H_dB, 'b', 'LineWidth', 1.5); hold on;
 yline(-3,  '--r', '-3 dB (REQ-02 limit)',  'LabelHorizontalAlignment', 'left');
 yline(-20, '--m', '-20 dB (REQ-01 limit)', 'LabelHorizontalAlignment', 'left');
@@ -95,7 +99,12 @@ xlabel('Frequency (Hz)'); ylabel('Magnitude (dB)');
 title('FIR Filter Frequency Response');
 xlim([0 fs/2]); ylim([-80 5]);
 grid on; legend('Filter response');
-saveas(gcf, 'docs/waveforms/frequency_response.png');
+saveas(gcf, fullfile(outputDir, 'frequency_response.png'));
+close(gcf);
+
+if ~req01_pass || ~req02_pass
+    error('REQ-01 or REQ-02 failed. See output above for details.');
+end
 
 
 
