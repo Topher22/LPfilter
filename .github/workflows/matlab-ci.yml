@@ -9,7 +9,7 @@ jobs:
     name: MATLAB CI
     runs-on: [self-hosted, linux]
     env:
-      MATLAB_BIN: /home/anwar/MATLAB/R2026a/bin/matlab
+      MATLAB_BIN: /home/anwar/MATLAB/R2026a/matlab
 
     steps:
       - uses: actions/checkout@v4
