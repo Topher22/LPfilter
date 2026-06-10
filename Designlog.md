@@ -4,6 +4,9 @@ This document tracks design iterations as filter parameters (tap count, cutoff f
 
 ---
 
+
+
+
 ## Iteration 1 — Initial Design (5 taps, Fc = 1000 Hz)
 
 **Date:** [07.06.2026]  
@@ -15,7 +18,9 @@ This document tracks design iterations as filter parameters (tap count, cutoff f
 **Results:**
 - REQ-01 (≥20 dB @ 2000 Hz): **FAIL** — Attenuation = [-7.27] dB
 - REQ-02 (<3 dB @ 200 Hz): **PASS** — Attenuation = [-0.07] dB
-- REQ-04 (latency ≤ 5 cycles): **PASS** (by design — 5 taps = 5 cycles)
+- REQ-03 (no overflow):  NOT CONSIDERED
+- REQ-04 (latency ≤ 5 cycles): NOT CONSIDERED
+
 
 **Decision:**
 - Adjusting parameters: N_filter --> 7
@@ -43,6 +48,8 @@ This document tracks design iterations as filter parameters (tap count, cutoff f
 **Results:**
 - REQ-01: **FAIL** — Attenuation = [-13.39] dB
 - REQ-02: **PASS** — Attenuation = [-0.13] dB
+- REQ-03 (no overflow):  NOT CONSIDERED
+- REQ-04 (latency ≤ 5 cycles): NOT CONSIDERED
 
 **Decision:**
 - Adjusting parameters: N_taps --> 9
@@ -61,23 +68,60 @@ This document tracks design iterations as filter parameters (tap count, cutoff f
 
 ---
 
+## Iteration 3 — [7 taps, Fc = 1000 Hz]
+
+**Date:** [10.06.2026]  
+**Parameters:**
+- N_taps = [9]
+- Fc = [1000] Hz
+- Wn = [Wn = 0.25]
+
+**Results:**
+- REQ-01: **PASS** — Attenuation = [--20.67] dB
+- REQ-02: **PASS** — Attenuation = [-0.17] dB
+- REQ-03 (no overflow):  NOT CONSIDERED
+- REQ-04 (latency ≤ 5 cycles): NOT CONSIDERED
+
+**Decision:**
+- Accepted filter number
+- HF attenuation sufficient (REQ-01)
+
+**Artifacts:**
+- `docs/waveforms/frequency_response_iter3.png`
+- Coefficients: h = 
+[ h(1) = 0
+  h(2) = 626
+  h(3) = 3338
+  h(4) = 7565
+  h(5) = 9711
+  h(6) = 7565
+  h(7) = 3338
+  h(8) = 626
+  h(9) = 0]
+
+---
+
 ## Final Design (approved)
 
-**Date:** [Date]  
+**Date:** [10.06.2026]  
 **Parameters:**
-- N_taps = 5
+- N_taps = 9
 - Fc = 1000 Hz
 - All requirements PASS
 
-**Frequency Response Plot:** `docs/waveforms/frequency_response.png`
+**Frequency Response Plot:** - `docs/waveforms/frequency_response_iter3.png`
 
 **Final Coefficients (Q1.15):**
 ```
-h0 = [X]
-h1 = [X]
-h2 = [X]
-h3 = [X]
-h4 = [X]
-```
+h(1) = 0
+h(2) = 626
+h(3) = 3338
+h(4) = 7565
+h(5) = 9711
+h(6) = 7565
+h(7) = 3338
+h(8) = 626
+h(9) = 0
 
+```
 Ready for VHDL implementation.
