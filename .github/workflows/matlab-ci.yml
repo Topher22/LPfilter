@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Run MATLAB script
+      - name: Run reference_model.m
         run: |
           set -e
 
@@ -26,12 +26,5 @@ jobs:
 
           cd "$GITHUB_WORKSPACE"
 
-          echo "Running MATLAB script..."
+          echo "Running reference_model.m..."
           "$MATLAB_BIN" -batch "try, reference_model, catch e, disp(getReport(e)), exit(1), end, exit(0);"
-
-      - name: Upload artifacts (optional)
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: matlab-output
-          path: docs/waveforms/
