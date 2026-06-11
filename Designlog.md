@@ -1,4 +1,4 @@
-# Design Log — FIR Filter Refinement
+# Design Log — FIR Filter Refinement (MATLAB SIM)
 
 This document tracks design iterations as filter parameters (tap count, cutoff frequency) are adjusted to meet requirements.
 
@@ -130,3 +130,5 @@ h(9) = 0
 
 ```
 Ready for VHDL implementation.
+
+# Design Log — FIR Filter Refinement (MATLAB SIM)

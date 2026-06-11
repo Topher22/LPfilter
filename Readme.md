@@ -63,3 +63,63 @@ x[n] ───► │  z⁻¹ ──► z⁻¹ ──► z⁻¹ ──► ···
                               y[n] ───►
 
 
+### Signal Description
+
+| Signal | Direction | Width | Description |
+|--------|-----------|-------|-------------|
+| `clk` | Input | 1 bit | System clock |
+| `rst` | Input | 1 bit | Synchronous reset |
+| `x_in` | Input | 16 bit | Signed input sample |
+| `y_out` | Output | 16 bit | Filtered output sample |
+| `valid_in` | Input | 1 bit | Input sample valid flag |
+| `valid_out` | Output | 1 bit | Output sample valid flag |
+
+
+## 4. Implementation
+
+### Repository Structure
+
+```
+fir-filter-vhdl/
+├── src/
+│   └── fir_filter.vhd          # Main filter entity
+├── tb/
+│   └── fir_filter_tb.vhd       # VHDL testbench
+├── ref/
+│   └── reference_model.m       # MATLAB reference model & coefficient generation
+├── sim/
+│   └── aldec_sim.do            # Aldec simulation script
+├── docs/
+│   └── waveforms/              # Aldec waveform screenshots
+└── README.md                   # This file
+```
+
+### Key Design Decisions
+
+- **Fixed-point arithmetic (Q1.15):** Coefficients are scaled to 16-bit integers to avoid floating point, which is not natively supported in synthesizable VHDL.
+- **Synchronous reset:** All registers reset on the rising edge of `clk` when `rst` is high, for predictable behavior in safety-critical contexts.
+- **Overflow protection:** Output is saturated rather than allowed to wrap, satisfying REQ-03.
+
+---
+
+## 5. Test Plan
+
+### Test Cases
+
+| TC ID | Input Signal | Expected Behavior | Verifies |
+|-------|-------------|-------------------|----------|
+| TC-01 | 200 Hz sine wave | Output closely matches input (< 3 dB loss) | REQ-02 |
+| TC-02 | 2000 Hz sine wave | Output amplitude reduced by ≥ 20 dB | REQ-01 |
+| TC-03 | Mixed 200 Hz + 2000 Hz | High frequency component attenuated | REQ-01, REQ-02 |
+| TC-04 | Maximum amplitude input | No overflow on output | REQ-03 |
+| TC-05 | Single impulse | Output settles within 5 cycles | REQ-04 |
+
+### Verification Method
+
+Each test case is run in two ways:
+1. **VHDL testbench** (Aldec) — asserts pass/fail using `assert` statements, with waveforms captured for review
+2. **MATLAB reference model** — same inputs processed in MATLAB using `filter()`, outputs compared numerically against VHDL simulation results
+
+A test is considered **passed** only when both methods agree within a defined tolerance (±1 LSB for rounding).
+
+---
