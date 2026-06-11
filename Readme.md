@@ -19,7 +19,7 @@
 ---
 
 ##  1.  Project Overview
-This  project implements a 5-tap FIR (Finite Impulse Response) low-pass filter in VHDL, targeting digital signal conditioning for sensor data —  a common task in aerospace embedded systems, used constantly in aerospace sensor processing (IMUs, GPS, radar).
+This  project implements a 9-tap FIR (Finite Impulse Response) low-pass filter in VHDL, targeting digital signal conditioning for sensor data —  a common task in aerospace embedded systems, used constantly in aerospace sensor processing (IMUs, GPS, radar).
 
 The goal is not only to implement the filter, but to **verify it rigorously**: feeding known inputs, asserting expected outputs, and comparing hardware simulation results against a software reference model.
 
@@ -41,27 +41,25 @@ The following requirements were defined before implementation, following a requi
 | REQ-01 | The filter shall attenuate signals above 1 kHz by at least 20 dB | Functional |
 | REQ-02 | The filter shall pass signals below 500 Hz with less than 3 dB attenuation | Functional |
 | REQ-03 | The filter output shall never overflow its defined bit width | Safety |
-| REQ-04 | The filter shall produce a valid output within 5 clock cycles of a valid input | Timing |
+| REQ-04 | The filter shall produce a valid output within 9 clock cycles of a valid input | Timing |
 | REQ-05 | All requirements shall be verified by simulation testbench | Verification |
 
 ---
+
 ## 3. Architecture
 
 ### Block Diagram
-
-```
-          ┌─────────────────────────────────────────┐
-          │            FIR Filter (5-tap)            │
-          │                                          │
-x[n] ───► │  z⁻¹ ──► z⁻¹ ──► z⁻¹ ──► z⁻¹          │
-          │   │        │        │        │           │
-          │  ×h0      ×h1      ×h2      ×h3   ×h4   │
-          │   │        │        │        │      │    │
-          │   └────────┴────────┴────────┴──────┘   │
-          │                    Σ                     │
-          └─────────────────────────┬───────────────┘
-                                    │
-                                  y[n] ───►
-```
+┌──────────────────────────────────────────────────────┐
+          │              FIR Filter (9-tap)                       │
+          │                                                       │
+x[n] ───► │  z⁻¹ ──► z⁻¹ ──► z⁻¹ ──► ··· ──► z⁻¹               │
+          │   │        │        │              │                 │
+          │  ×h₀      ×h₁      ×h₂     ···   ×h₈                │
+          │   │        │        │              │                 │
+          │   └────────┴────────┴──────────────┘                 │
+          │                    Σ                                  │
+          └─────────────────────┬───────────────────────────────┘
+                                │
+                              y[n] ───►
 
 
