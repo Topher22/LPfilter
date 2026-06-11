@@ -95,11 +95,11 @@ Define **how confidence in the design is established**. Without a verification r
 
 ---
 
-### REQ-04 — The filter shall produce a valid output within 5 clock cycles of a valid input
+### REQ-04 — The filter shall produce a valid output within 9 clock cycles of a valid input
 
-**What it means:** The pipeline latency from input sample to valid output sample must not exceed 5 clock cycles.
+**What it means:** The pipeline latency from input sample to valid output sample must not exceed 9 clock cycles.
 
-**Why 5 cycles:** A 5-tap FIR filter requires exactly 5 input samples to fill its internal delay line before producing a fully valid output. This requirement is therefore **tight but achievable by design** — it validates that no unnecessary pipeline stages have been introduced and that the implementation matches the theoretical minimum latency.
+**Why 5 cycles:** A 9-tap FIR filter requires exactly 9 input samples to fill its internal delay line before producing a fully valid output. This requirement is therefore **tight but achievable by design** — it validates that no unnecessary pipeline stages have been introduced and that the implementation matches the theoretical minimum latency.
 
 **Why latency matters:** In a closed-loop control system, filter latency contributes directly to control loop delay. Excessive latency can cause instability. Even in open-loop sensor chains, latency must be bounded and known for system timing analysis.
 

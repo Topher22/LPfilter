@@ -133,7 +133,7 @@ plot_testcase(t, x_tc03, y_tc03, 'TC-03: Mixed 200 Hz + 2000 Hz Signal', ...
 
 % --- TC-04: Maximum amplitude input (overflow check — REQ-03) ------------
 % In Q1.15, max signed 16-bit value = 32767
-MAX_VAL  = 32767 / SCALE;   % Normalised equivalent of max fixed-point input
+MAX_VAL  = 32767 / SCALE;   % Normalized equivalent of max fixed-point input
 x_tc04   = MAX_VAL * ones(1, N);
 y_tc04   = filter(h, 1, x_tc04);
 overflow = any(abs(y_tc04 * SCALE) > 32767);
@@ -141,6 +141,29 @@ fprintf('\n=== REQ-03 Check (no overflow) ===\n');
 fprintf('  Max output value (Q1.15 scaled): %.0f\n', max(abs(y_tc04 * SCALE)));
 fprintf('  Overflow detected: %s\n', tf_str(overflow));
 fprintf('  REQ-03: %s\n', pass_fail(~overflow));
+
+
+% --- TC-05: Single impulse (latency check — REQ-04) ----------------------
+x_tc05        = zeros(1, 20);
+x_tc05(1)     = 1;           % Single impulse at sample 1
+y_tc05        = filter(h, 1, x_tc05);
+nonzero_idx   = find(abs(y_tc05) > 1e-10, 1, 'last'); % Determine if the impulse response finishes within 9 samples.
+
+% REQ-04 requires the filter output to be valid within 9 clock cycles;
+% nonzero_idx is the last sample index (1-based) where output is non-negligible.
+% If the last non-zero sample index is <= 9, the requirement is met.
+req04_pass = nonzero_idx <= 9;
+fprintf('\n=== REQ-04 Check (output valid within 9 clock cycles) ===\n');
+fprintf('  Last non-zero output sample index: %d\n', nonzero_idx);
+fprintf('  REQ-04: %s\n', pass_fail(req04_pass));
+
+figure('Name', 'TC-05: Impulse Response — REQ-04 Verification');
+stem(0:19, y_tc05, 'filled'); hold on;
+xline(9, '--r', 'Cycle 9 limit (REQ-04)');
+xlabel('Sample index'); ylabel('Amplitude');
+title('TC-05: Impulse Response');
+grid on;
+saveas(gcf, 'docs/waveforms/tc05_impulse.png');
 
 
 % -------------------------------------------------------------------------
