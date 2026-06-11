@@ -99,7 +99,11 @@ Define **how confidence in the design is established**. Without a verification r
 
 **What it means:** The pipeline latency from input sample to valid output sample must not exceed 9 clock cycles.
 
+<<<<<<< HEAD
 **Why 5 cycles:** A 9-tap FIR filter requires exactly 9 input samples to fill its internal delay line before producing a fully valid output. This requirement is therefore **tight but achievable by design** — it validates that no unnecessary pipeline stages have been introduced and that the implementation matches the theoretical minimum latency.
+=======
+**Why 9 cycles:** A 9-tap FIR filter requires exactly 9 input samples to fill its internal delay line before producing a fully valid output. This requirement is therefore **tight but achievable by design** — it validates that no unnecessary pipeline stages have been introduced and that the implementation matches the theoretical minimum latency.
+>>>>>>> 6b49794ac0572a43ab361f95ba3b16bc4cd144fc
 
 **Why latency matters:** In a closed-loop control system, filter latency contributes directly to control loop delay. Excessive latency can cause instability. Even in open-loop sensor chains, latency must be bounded and known for system timing analysis.
 
