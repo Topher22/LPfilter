@@ -103,7 +103,7 @@ This document tracks design iterations as filter parameters (tap count, cutoff f
 
 ## Final Design (approved)
 
-**Date:** [10.06.2026]  
+**Date:** [11.06.2026]  
 **Parameters:**
 - N_taps = 9
 - Fc = 1000 Hz
