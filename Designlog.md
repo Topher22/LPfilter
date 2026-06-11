@@ -109,7 +109,12 @@ This document tracks design iterations as filter parameters (tap count, cutoff f
 - Fc = 1000 Hz
 - All requirements PASS
 
-**Frequency Response Plot:** - `docs/waveforms/frequency_response_iter3.png`
+**Frequency Response Plots:** 
+- `docs/waveforms/frequency_response_iter3.png`
+- `docs/waveforms/TC-01: 200 Hz Sine (Passband).png`
+- `docs/waveforms/TC-02: 2000 Hz Sine (Stopband).png`
+- `docs/waveforms/TC-03: Mixed 200 Hz + 2000 Hz Signal.png`
+- `docs/waveforms/TC-05: Impulse Response — REQ-04 Verification.png`
 
 **Final Coefficients (Q1.15):**
 ```
