@@ -131,6 +131,18 @@ y_tc03   = filter(h, 1, x_tc03);
 plot_testcase(t, x_tc03, y_tc03, 'TC-03: Mixed 200 Hz + 2000 Hz Signal', ...
     'docs/waveforms/tc03_mixed.png');
 
+% --- TC-04: Maximum amplitude input (overflow check — REQ-03) ------------
+% In Q1.15, max signed 16-bit value = 32767
+MAX_VAL  = 32767 / SCALE;   % Normalised equivalent of max fixed-point input
+x_tc04   = MAX_VAL * ones(1, N);
+y_tc04   = filter(h, 1, x_tc04);
+overflow = any(abs(y_tc04 * SCALE) > 32767);
+fprintf('\n=== REQ-03 Check (no overflow) ===\n');
+fprintf('  Max output value (Q1.15 scaled): %.0f\n', max(abs(y_tc04 * SCALE)));
+fprintf('  Overflow detected: %s\n', tf_str(overflow));
+fprintf('  REQ-03: %s\n', pass_fail(~overflow));
+
+
 % -------------------------------------------------------------------------
 %  LOCAL HELPER FUNCTIONS
 % -------------------------------------------------------------------------
@@ -145,4 +157,8 @@ function plot_testcase(t, x, y, title_str, filename)
     xlabel('Time (ms)'); ylabel('Amplitude');
     title(title_str); legend; grid on;
     saveas(gcf, filename);
+end
+
+function s = tf_str(condition)
+    if condition, s = 'YES'; else, s = 'NO'; end
 end
