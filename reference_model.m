@@ -146,7 +146,3 @@ function plot_testcase(t, x, y, title_str, filename)
     title(title_str); legend; grid on;
     saveas(gcf, filename);
 end
-
-
-
-
