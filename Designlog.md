@@ -131,4 +131,7 @@ h(9) = 0
 ```
 Ready for VHDL implementation.
 
-# Design Log — FIR Filter Refinement (MATLAB SIM)
+# Design Log — FIR Filter Refinement (VHDL Testbench)
+
+Aldec will be used to simulate the FPGA and testbench. A pipelined structure was decided upon as it ensure the 9 cycles are completed before the Sums and Products are processed as pushed to the output port.
+
