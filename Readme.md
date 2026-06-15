@@ -82,7 +82,7 @@ x[n] ───► │  z⁻¹ ──► z⁻¹ ──► z⁻¹ ──► ···
 ```
 fir-filter-vhdl/
 ├── src/
-│   └── LPfilterr.vhd          # Main filter entity
+│   └── LPfilter.vhd          # Main filter entity
 ├── tb/
 │   └── LPfilter_tb.vhd       # VHDL testbench
 ├── ref/
