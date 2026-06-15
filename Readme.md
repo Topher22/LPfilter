@@ -82,9 +82,9 @@ x[n] ───► │  z⁻¹ ──► z⁻¹ ──► z⁻¹ ──► ···
 ```
 fir-filter-vhdl/
 ├── src/
-│   └── fir_filter.vhd          # Main filter entity
+│   └── LPfilterr.vhd          # Main filter entity
 ├── tb/
-│   └── fir_filter_tb.vhd       # VHDL testbench
+│   └── LPfilter_tb.vhd       # VHDL testbench
 ├── ref/
 │   └── reference_model.m       # MATLAB reference model & coefficient generation
 ├── sim/
