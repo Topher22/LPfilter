@@ -136,7 +136,7 @@ Ready for VHDL implementation.
 
 Aldec Active-HDL Student Edition was used to simulate the FPGA implementation and testbench. A fully pipelined 9-stage architecture was chosen to ensure each multiply-accumulate stage completes before results are pushed to the output port. The VHDL design was implemented and verified against all requirements using a five test case testbench.
 
-**Simulation file:** [`docs/waveforms/Lpfilter.asdb`](docs/waveforms/Lpfilter.asdb) *(open in Aldec Active-HDL)*
+**Simulation file:** [`docs/waveforms/Lpfilter.asdb`]([docs/waveforms/Lpfilter.asdb](https://github.com/Topher22/LPfilter/blob/main/docs/LPfilter.awc)) *(open in Aldec Active-HDL)*
 
 ---
 
