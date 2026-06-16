@@ -296,3 +296,11 @@ All requirements verified. Design confirmed for integration.
 In a real DO-254 project, additional steps would include formal code reviews, hardware-in-the-loop testing, and a dedicated verification independence role.
 
 ---
+##  Tools & References
+
+| Tool | Purpose |
+|------|---------|
+| [Aldec Active-HDL / Riviera-PRO](https://www.aldec.com) | VHDL simulation & waveform visualization |
+| MATLAB (`fir1`, `freqz`, `filter`) | Filter design, coefficient generation & reference model |
+| VS Code + VHDL extension | HDL editing |
+
