@@ -77,7 +77,7 @@ Define **how confidence in the design is established**. Without a verification r
 
 **Why 3 dB:** 3 dB (a factor of √2 in amplitude) is the universal engineering convention for the boundary of acceptable signal loss. It is used consistently across filter design, RF engineering, and control systems — making it a meaningful and defensible threshold.
 
-**Why 500 Hz:** Chosen to provide a clear separation from the 1 kHz stopband edge defined in REQ-01. The resulting 500 Hz transition band is deliberately generous, matching what a 5-tap FIR can realistically achieve.
+**Why 500 Hz:** Chosen to provide a clear separation from the 1 kHz stopband edge defined in REQ-01. The resulting 500 Hz transition band is deliberately generous, matching what a 9-tap FIR can realistically achieve.
 
 **What it covers:** Passband flatness — ensuring the useful signal is preserved.
 
