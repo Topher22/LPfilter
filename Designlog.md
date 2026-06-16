@@ -134,4 +134,18 @@ Ready for VHDL implementation.
 # Design Log — FIR Filter Refinement (VHDL Testbench)
 
 Aldec will be used to simulate the FPGA and testbench. A pipelined structure was decided upon as it ensure the 9 cycles are completed before the Sums and Products are processed as pushed to the output port.
+The VHDL design whas been implemented and tested with its testbench correspondent. 
+
+
+## TC01 - 200 Hz Sinewave
+**Date:** [15.06.2026]  
+**Parameters:**
+- Expected Outcome: Signal is let through i.e. replicated at output with attenuation < -3dB
+- TC-01 focuses on a low frequency 200HZ sine wave
+- All requirements were fulfilled
+
+**Waveform:** 
+- 
+**Final Coefficients (Q1.15):**
+```
 

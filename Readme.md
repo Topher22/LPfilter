@@ -80,11 +80,11 @@ x[n] ───► │  z⁻¹ ──► z⁻¹ ──► z⁻¹ ──► ···
 ### Repository Structure
 
 ```
-fir-filter-vhdl/
+LPfilter-vhdl/
 ├── src/
-│   └── fir_filter.vhd          # Main filter entity
+│   └── LPfilter.vhd          # Main filter entity
 ├── tb/
-│   └── fir_filter_tb.vhd       # VHDL testbench
+│   └── LPfilter_tb.vhd       # VHDL testbench
 ├── ref/
 │   └── reference_model.m       # MATLAB reference model & coefficient generation
 ├── sim/
@@ -112,7 +112,7 @@ fir-filter-vhdl/
 | TC-02 | 2000 Hz sine wave | Output amplitude reduced by ≥ 20 dB | REQ-01 |
 | TC-03 | Mixed 200 Hz + 2000 Hz | High frequency component attenuated | REQ-01, REQ-02 |
 | TC-04 | Maximum amplitude input | No overflow on output | REQ-03 |
-| TC-05 | Single impulse | Output settles within 5 cycles | REQ-04 |
+| TC-05 | Single impulse | Output settles within 9 cycles | REQ-04 |
 
 ### Verification Method
 
