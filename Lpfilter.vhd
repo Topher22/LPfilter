@@ -28,8 +28,8 @@
 -------------------------------------------------------------------------------
 
 -- ======================================QQ===================================
--- fir_filter_pipelined_9cycle.vhd
--- 9-tap FIR Low-Pass Filter — 9-Stage Pipelined Architecture
+-- Lpfilter.vhd
+-- 9-tap FIR Low-Pass Filter â€” 9-Stage Pipelined Architecture
 --
 -- Pipeline Stages:
 --   Stage 1: Input registration + shift register (sample 0-8)
@@ -41,15 +41,15 @@
 -- =========================================================================
 
 -- =========================================================================
--- fir_filter_pipelined_9cycle.vhd
--- 9-tap FIR Low-Pass Filter — 9-Stage Pipelined Architecture
+-- Lpfilter.vhd
+-- 9-tap FIR Low-Pass Filter â€” 9-Stage Pipelined Architecture
 -- =========================================================================
 
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity fir_filter_pipelined_9cycle is
+entity LPfilter is
     port (
         clk       : in  std_logic;
         rst       : in  std_logic;
@@ -58,9 +58,9 @@ entity fir_filter_pipelined_9cycle is
         y_out     : out signed(15 downto 0);
         valid_out : out std_logic
     );
-end entity fir_filter_pipelined_9cycle;
+end entity LPfilter;
 
-architecture pipelined of fir_filter_pipelined_9cycle is
+architecture pipelined of LPfilter is
 
     type coeff_array is array (0 to 8) of signed(15 downto 0);
     type samples_array is array (0 to 8) of signed(15 downto 0);
@@ -190,13 +190,13 @@ begin
                 
                 if valid_s9 = '1' then
                     -- Right-shift by 15 bits to convert Q2.30 -> Q1.15
-                    -- Extract bits [30:14] which gives the 17-bit result
-                    if final_sum_s9(30 downto 14) > to_signed(32767, 17) then
+                    -- Extract bits [31:15] which gives the 17-bit result
+                    if final_sum_s9(31 downto 15) > to_signed(32767, 17) then
                         y_out <= to_signed(32767, 16);
-                    elsif final_sum_s9(30 downto 14) < to_signed(-32768, 17) then
+                    elsif final_sum_s9(31 downto 15) < to_signed(-32768, 17) then
                         y_out <= to_signed(-32768, 16);
                     else
-                        y_out <= final_sum_s9(29 downto 14);
+                        y_out <= final_sum_s9(30 downto 15);
                     end if;
                 end if;
 
