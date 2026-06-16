@@ -285,7 +285,7 @@ All requirements verified. Design confirmed for integration.
 | 3 | `Lpfilter.vhd` | Trailing semicolon after last port `valid_out` — VHDL syntax error | Removed trailing semicolon |
 
 
-## 7. Reflection & DO-254 Considerations
+## Reflection & DO-254 Considerations
 
 **DO-254** is the aerospace standard for hardware design assurance (analogous to DO-178C for software). While this project is academic, the following practices were applied in its spirit:
 
