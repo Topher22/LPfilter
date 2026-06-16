@@ -87,8 +87,6 @@ LPfilter-vhdl/
 │   └── LPfilter_tb.vhd       # VHDL testbench
 ├── ref/
 │   └── reference_model.m       # MATLAB reference model & coefficient generation
-├── sim/
-│   └── aldec_sim.do            # Aldec simulation script
 ├── docs/
 │   └── waveforms/              # Aldec waveform screenshots
 └── README.md                   # This file
