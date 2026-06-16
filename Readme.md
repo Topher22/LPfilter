@@ -12,9 +12,7 @@
 3. [Architechture](#3-architechture)
 4. [Implementation](#4-implementation)
 5. [Test Plan](#5-test-plan)
-6. [Test Results](#6-results)
-7. [Review/DO-254 Considerations](#7-review--do-254-considerations)
-8. [Tools & References](#8-tools--references)
+
 
 ---
 
