@@ -113,7 +113,7 @@ LPfilter-vhdl/
 ### Verification Method
 
 Each test case is run in two ways:
-1. **VHDL testbench** (Aldec) — asserts pass/fail using `assert` statements, with waveforms captured for review
+1. **VHDL testbench** (Aldec) — asserts pass/fail, with waveforms captured for review
 2. **MATLAB reference model** — same inputs processed in MATLAB using `filter()`, outputs compared numerically against VHDL simulation results
 
 A test is considered **passed** only when both methods agree within a defined tolerance (±1 LSB for rounding).
