@@ -19,7 +19,7 @@ This document tracks design iterations as filter parameters (tap count, cutoff f
 - REQ-01 (≥20 dB @ 2000 Hz): **FAIL** — Attenuation = [-7.27] dB
 - REQ-02 (<3 dB @ 200 Hz): **PASS** — Attenuation = [-0.07] dB
 - REQ-03 (no overflow):  NOT CONSIDERED
-- REQ-04 (latency ≤ 5 cycles): NOT CONSIDERED
+- REQ-04 (latency ≤ 9 cycles): NOT CONSIDERED
 
 
 **Decision:**
