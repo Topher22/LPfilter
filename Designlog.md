@@ -283,3 +283,16 @@ All requirements verified. Design confirmed for integration.
 | 1 | `Lpfilter.vhd` | Bit slice `[30:14]` used for saturation check — sign bit excluded, wrong overflow detection | Changed to `[31:15]` for check; `[30:15]` for output |
 | 2 | `Lpfilter_tb.vhd` | `valid_in = '0'` during TC-05 zero-padding — pipeline stalled, no flush | Kept `valid_in = '1'` during 19-cycle zero-flush |
 | 3 | `Lpfilter.vhd` | Trailing semicolon after last port `valid_out` — VHDL syntax error | Removed trailing semicolon |
+
+
+## 7. Reflection & DO-254 Considerations
+
+**DO-254** is the aerospace standard for hardware design assurance (analogous to DO-178C for software). While this project is academic, the following practices were applied in its spirit:
+
+- **Requirements traceability:** Every test case maps back to a defined requirement.
+- **Independence of verification:** The MATLAB reference model serves as an independent verification artefact separate from the VHDL implementation.
+- **Structured documentation:** Requirements, design, and test results are kept as separate, traceable artefacts.
+
+In a real DO-254 project, additional steps would include formal code reviews, hardware-in-the-loop testing, and a dedicated verification independence role.
+
+---

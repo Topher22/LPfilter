@@ -121,5 +121,6 @@ Each test case is run in two ways:
 2. **MATLAB reference model** — same inputs processed in MATLAB using `filter()`, outputs compared numerically against VHDL simulation results
 
 A test is considered **passed** only when both methods agree within a defined tolerance (±1 LSB for rounding).
+All results and steps taken are documented in [Designlog](https://github.com/Topher22/LPfilter/blob/main/Designlog.md)
 
 ---
