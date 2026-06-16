@@ -37,7 +37,7 @@ This document tracks design iterations as filter parameters (tap count, cutoff f
 
 ---
 
-## Iteration 2 — [5 taps, Fc = 1000 Hz]
+## Iteration 2 — [7 taps, Fc = 1000 Hz]
 
 **Date:** [09.06.2026]  
 **Parameters:**
@@ -68,7 +68,7 @@ This document tracks design iterations as filter parameters (tap count, cutoff f
 
 ---
 
-## Iteration 3 — [7 taps, Fc = 1000 Hz]
+## Iteration 3 — [9 taps, Fc = 1000 Hz]
 
 **Date:** [10.06.2026]  
 **Parameters:**
